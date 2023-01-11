@@ -39,6 +39,7 @@ app.use(
     cookie: {
       httpOnly: false,
       secure: true,
+      sameSite: 'none',
     },
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URL,
