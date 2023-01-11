@@ -34,6 +34,7 @@ export default function ItemProvider(props: PropsWithChildren<any>) {
 
   /* Get items from inventory */
   const getItems = async () => {
+    console.log(import.meta.env.VITE_API_URL)
     try {
       await Axios.get(`${import.meta.env.VITE_API_URL}/item`)
         .then((res: AxiosResponse) => setItems(res.data));
