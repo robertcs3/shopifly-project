@@ -22,15 +22,6 @@ export default function UserProvider(props: PropsWithChildren<any>) {
     })
   }, []);
 
-  const getUser = async () => {
-    await Axios.get(`${import.meta.env.VITE_API_URL}/user`, { withCredentials: true }).then((res: AxiosResponse) => {
-      setUser(res.data);
-      console.log(res.data);
-    }).catch(err => {
-    })
-  }
-  
-
   /* login user */
   const login = async (username: string, password: string) => {
     return await Axios.post(`${import.meta.env.VITE_API_URL}/user/login`, {
@@ -40,7 +31,6 @@ export default function UserProvider(props: PropsWithChildren<any>) {
       withCredentials: true
     }).then((res: AxiosResponse) => {
       res.data
-      getUser()
     }, () => {
       return ('failure')
     })
