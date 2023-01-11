@@ -13,7 +13,6 @@ import { UserInterface, DatabaseUserInterface } from './interfaces/UserInterface
 
 dotenv.config();
 
-
 const userRouter = require('./routes/user')
 const itemRouter = require('./routes/item')
 
@@ -30,12 +29,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
-app.use(cors({ origin: 'https://shopifly-lmiw.onrender.com', credentials: true }))
+app.set('trust proxy', 1);
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
 app.use(
   session({
     secret: process.env.ACCESS_TOKEN_SECRET!,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: true
+    },
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URL,
     })
