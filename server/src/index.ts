@@ -29,17 +29,23 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
+
 app.use(cors({ origin: 'https://shopifly-lmiw.onrender.com', credentials: true }))
 app.use(
   session({
     secret: process.env.ACCESS_TOKEN_SECRET!,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      httpOnly: false,
+      secure: true,
+    },
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URL,
     })
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
