@@ -1,0 +1,27 @@
+.body {
+    height: 100vh;
+    background-image: url("../../public/home-page.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+.intro {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    top: 10rem;
+}
+
+.logo {
+    font-size: 4rem;
+    color: white;
+    background-color: #292b2c;
+    padding: 0 1rem 0 1rem;
+    min-width: max-content;
+    cursor:default;
+    display: flex;
+    gap: 1rem;
+}
