@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/esm/Form'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { UserContext } from '../contexts/UserContext'
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -13,17 +14,19 @@ const schema = yup.object().shape({
 
 export default function Login() {
   const userContext = useContext(UserContext);
+  const navigate = useNavigate();
   return (
     <>
       <Formik
       validationSchema={schema}
       onSubmit={async (values, actions) => {
         let response = await userContext.login(values.username, values.password);
+        console.log(response);
         if (response === "failure") {
           actions.setFieldError('username', 'Login credentials incorrect')
           actions.setFieldError('password', 'Login credentials incorrect')
         } else {
-          window.location.href='/profile'
+          navigate('/shop')
         }
       }}
       initialValues={{
