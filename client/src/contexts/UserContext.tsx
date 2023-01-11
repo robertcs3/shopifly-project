@@ -38,7 +38,10 @@ export default function UserProvider(props: PropsWithChildren<any>) {
       password
     }, {
       withCredentials: true
-    }).then((res: AxiosResponse) => res.data, () => {
+    }).then((res: AxiosResponse) => {
+      res.data
+      getUser()
+    }, () => {
       return ('failure')
     })
   }
