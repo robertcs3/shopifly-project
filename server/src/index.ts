@@ -29,13 +29,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
-
+app.set('trust proxy', 1);
 app.use(cors({ origin: 'https://shopifly-lmiw.onrender.com', credentials: true }))
 app.use(
   session({
     secret: process.env.ACCESS_TOKEN_SECRET!,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       httpOnly: false,
       secure: true,
