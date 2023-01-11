@@ -17,6 +17,7 @@ export default function UserProvider(props: PropsWithChildren<any>) {
   useEffect(() => {
     Axios.get(`${import.meta.env.VITE_API_URL}/user`, { withCredentials: true }).then((res: AxiosResponse) => {
       setUser(res.data);
+      console.log(res.data);
     }).catch(err => {
     })
   }, []);
