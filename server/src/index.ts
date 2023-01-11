@@ -31,7 +31,6 @@ console.log(process.env.CORS);
 /* middleware */
 const app = express();
 app.use(express.json());
-app.enable('trust proxy')
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
 app.use(cors({ origin: process.env.CORS, credentials: true }))
@@ -40,13 +39,6 @@ app.use(
     secret: process.env.ACCESS_TOKEN_SECRET!,
     resave: true,
     saveUninitialized: true,
-
-    proxy:true,
-    cookie: {
-      sameSite: 'none',
-      secure: true,
-      maxAge: 3600000,
-    },
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URL,
     })
