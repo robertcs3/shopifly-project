@@ -21,11 +21,11 @@ export default function Login() {
       validationSchema={schema}
       onSubmit={async (values, actions) => {
         let response = await userContext.login(values.username, values.password);
-        console.log(response);
         if (response === "failure") {
           actions.setFieldError('username', 'Login credentials incorrect')
           actions.setFieldError('password', 'Login credentials incorrect')
         } else {
+          window.location.href='/profile'
         }
       }}
       initialValues={{

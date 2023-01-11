@@ -7,7 +7,6 @@ import passportLocal from 'passport-local';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import bcrypt from 'bcryptjs';
-import MongoStore from 'connect-mongo';
 import User from './models/User';
 import { UserInterface, DatabaseUserInterface } from './interfaces/UserInterface';
 
@@ -29,22 +28,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cookieParser());
-app.enable('trust proxy');
 app.use(cors({ origin: "http://localhost:5173", credentials: true }))
 app.use(
   session({
     secret: process.env.ACCESS_TOKEN_SECRET!,
     resave: true,
     saveUninitialized: false,
-    proxy: true,
-    cookie: {
-      sameSite: 'none',
-      secure: true,
-      maxAge: 3600000,
-    },
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URL,
-    })
 })
 );
 
