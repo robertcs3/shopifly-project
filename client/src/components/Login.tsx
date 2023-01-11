@@ -26,7 +26,6 @@ export default function Login() {
           actions.setFieldError('username', 'Login credentials incorrect')
           actions.setFieldError('password', 'Login credentials incorrect')
         } else {
-          navigate('/shop')
         }
       }}
       initialValues={{

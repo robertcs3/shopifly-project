@@ -15,12 +15,16 @@ export default function UserProvider(props: PropsWithChildren<any>) {
   const [user, setUser] = useState<UserInterface>();
   /* get user on first render */
   useEffect(() => {
-    Axios.get(`${import.meta.env.VITE_API_URL}/user`, { withCredentials: true }).then((res: AxiosResponse) => {
+    getUser();
+  }, []);
+
+  const getUser = async () => {
+    await Axios.get(`${import.meta.env.VITE_API_URL}/user`, { withCredentials: true }).then((res: AxiosResponse) => {
       setUser(res.data);
       console.log(res.data);
     }).catch(err => {
     })
-  }, []);
+  }
 
   /* login user */
   const login = async (username: string, password: string) => {

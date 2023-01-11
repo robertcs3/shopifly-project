@@ -27,26 +27,25 @@ mongoose.connect(process.env.MONGO_URL!).then(() => {
 /* middleware */
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({extended: false}))
 app.use(cookieParser());
-app.set('trust proxy', 1);
-app.use(cors({ origin: 'https://shopifly-lmiw.onrender.com', credentials: true }))
+app.enable('trust proxy');
+app.use(cors({ origin: "http://localhost:5173", credentials: true }))
 app.use(
   session({
     secret: process.env.ACCESS_TOKEN_SECRET!,
-    resave: false,
-    saveUninitialized: true,
+    resave: true,
+    saveUninitialized: false,
     proxy: true,
     cookie: {
-      httpOnly: false,
-      secure: true,
       sameSite: 'none',
-      maxAge: 60000
+      secure: true,
+      maxAge: 3600000,
     },
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URL,
     })
-  })
+})
 );
 
 app.use(passport.initialize());
