@@ -1,6 +1,6 @@
 .body {
     height: 100vh;
-    background-image: url("../../public/home-page.jpg");
+    background-image: url("../../src/assets/home-page.jpg");
     background-position: center;
     background-size: cover;
     display: flex;
