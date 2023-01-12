@@ -28,14 +28,18 @@ mongoose.connect(process.env.MONGO_URL!).then(() => {
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
+app.set('proxy', 1)
 app.use(cookieParser());
 app.use(cors({ origin: "https://shopifly.onrender.com", credentials: true }))
 app.use(
   session({
     secret: process.env.ACCESS_TOKEN_SECRET!,
     resave: false,
+    cookie: {
+      secure: true,
+      maxAge: 86400000,
+    },
     saveUninitialized: false,
-    cookie: { maxAge: 86400000 },
     store: new MongoStore({
       mongoUrl: process.env.MONGO_URL,
       ttl: 14 * 24 * 60 * 60,
