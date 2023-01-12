@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import bcrypt from 'bcryptjs';
 import User from './models/User';
+import MongoStore from 'connect-mongo';
 import { UserInterface, DatabaseUserInterface } from './interfaces/UserInterface';
 
 dotenv.config();
@@ -28,17 +29,24 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }))
+app.use(cors({ origin: "https://shopifly.com", credentials: true }))
 app.use(
   session({
     secret: process.env.ACCESS_TOKEN_SECRET!,
     resave: false,
     saveUninitialized: false,
+    cookie: { maxAge: 86400000 },
+    store: new MongoStore({
+      mongoUrl: process.env.MONGO_URL,
+      ttl: 14 * 24 * 60 * 60,
+      autoRemove: 'native'
+    })
 })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 
 
