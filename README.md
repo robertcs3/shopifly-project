@@ -3,7 +3,7 @@
 # Project Overview
 
 ## Description
-Full-stack shopping cart application.
+Full-stack shopping cart application deployed on https://shopifly.onrender.com/
 
 ## Features
 * Register and login
