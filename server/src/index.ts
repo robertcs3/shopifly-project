@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGO_URL!).then(() => {
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
-app.set('proxy', 1)
+app.set('trust proxy', 1)
 app.use(cookieParser());
 app.use(cors({ origin: "https://shopifly.onrender.com", credentials: true }))
 app.use(
@@ -36,6 +36,7 @@ app.use(
     secret: process.env.ACCESS_TOKEN_SECRET!,
     resave: false,
     cookie: {
+      sameSite: "none",
       secure: true,
       maxAge: 86400000,
     },
