@@ -1,6 +1,6 @@
 
 import React, { useContext } from 'react'
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button, Form, InputGroup } from 'react-bootstrap'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { cloudinary } from '../utility/cloudinary'
@@ -67,8 +67,11 @@ export default function CreateItem(props: any) {
 
           <Form.Group className='mb-3'>
             <Form.Label>Price</Form.Label>
-            <Form.Control type='number' name='price' onChange={handleChange} value={values.price}  isValid={touched.price && !errors.price}
-             isInvalid={!!errors.price} placeholder="Price" required />
+            <InputGroup>
+              <InputGroup.Text>$</InputGroup.Text>
+              <Form.Control type='number' name='price' onChange={handleChange} value={values.price}  isValid={touched.price && !errors.price}
+               isInvalid={!!errors.price} placeholder="Price" required />
+            </InputGroup>
             <Form.Control.Feedback type='invalid'>{errors.price}</Form.Control.Feedback>
           </Form.Group>
 
