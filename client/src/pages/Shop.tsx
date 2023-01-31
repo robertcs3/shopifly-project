@@ -22,9 +22,9 @@ export default function Shop() {
                     {!userContext.user ? (
                       <NonUserDisplay {...item}/>
                     ) : userContext.user.isAdmin ? (
-                      <AdminDisplay/>
+                      <AdminDisplay {...item}/>
                     ) : (
-                      <NonAdminDisplay/>
+                      <NonAdminDisplay {...item}/>
                     )}
                   </Col>
                 
