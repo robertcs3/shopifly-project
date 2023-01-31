@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import AdminDisplay from '../components/item/AdminDisplay';
-import NonAdminDisplay from '../components/item/nonAdminDisplay';
+import NonAdminDisplay from '../components/item/NonAdminDisplay';
 import NonUserDisplay from '../components/item/NonUserDisplay';
 import { ItemContext } from '../contexts/ItemContext';
 import { UserContext } from '../contexts/UserContext';
