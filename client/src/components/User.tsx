@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { UserContext } from '../contexts/UserContext';
 import { motion } from 'framer-motion';
 import * as yup from 'yup';
-import CreateItem from './CreateItem';
+import CreateItem from './item/CreateItem';
 import CheckOutHistory from './CheckOutHistory';
 import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
 import { fadeInLeft, fadeInRight } from '../animations/variants';

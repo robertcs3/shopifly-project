@@ -3,8 +3,8 @@ import React, { useContext } from 'react'
 import { Modal, Button, Form, InputGroup } from 'react-bootstrap'
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { cloudinary } from '../utility/cloudinary'
-import { ItemContext } from '../contexts/ItemContext';
+import { cloudinary } from '../../utility/cloudinary'
+import { ItemContext } from '../../contexts/ItemContext';
 
 const schema = yup.object().shape({
   name: yup.string().required(),

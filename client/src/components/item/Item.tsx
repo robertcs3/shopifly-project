@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react'
-import { Alert, Button, Card, Col, Container, Row } from 'react-bootstrap';
-import { ItemContext } from '../contexts/ItemContext';
-import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
-import { UserContext } from '../contexts/UserContext';
-import { ItemInterface } from '../interfaces/ItemInterface';
-import { formatCurrency } from '../utility/formatCurrency';
+import { useContext, useState } from 'react'
+import {  Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { ItemContext } from '../../contexts/ItemContext';
+import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
+import { UserContext } from '../../contexts/UserContext';
+import { ItemInterface } from '../../interfaces/ItemInterface';
+import { formatCurrency } from '../../utility/formatCurrency';
 import EditItem from './EditItem';
 
 export default function Item() {
