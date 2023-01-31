@@ -7,7 +7,7 @@ export default function Entry() {
   const [key, setKey] = useState<string>("login")
   return (
     <>
-      <Container>
+      
         <Row className='d-flex justify-content-center'>
           <Col lg={6} md={6} xs={6}>
             <Tabs
@@ -25,7 +25,7 @@ export default function Entry() {
                 </Tabs>
           </Col>
         </Row>
-      </Container>
+      
       
     </>
   )

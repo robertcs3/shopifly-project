@@ -8,14 +8,14 @@ export default function Profile() {
   const userContext = useContext(UserContext);
 
   return (
-    <Container className='mt-5'>
+    <div>
       {userContext.user ? (
         <>
-        <User />
+          <User />
         </>
       ) : (
         <Entry />
       )}
-    </Container>
+    </div>
   )
 }

@@ -11,7 +11,7 @@ export default function Shop() {
   const userContext = useContext(UserContext);
   return (
     <>
-      <Container className='mt-5'>
+      
         <Row className='gap-5'>
           <>
             {itemContext.items.map(item => {
@@ -31,7 +31,7 @@ export default function Shop() {
             })}
           </>
         </Row>
-      </Container>
+      
       {/* <Item /> */}
     </>
   )

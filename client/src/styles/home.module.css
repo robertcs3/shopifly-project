@@ -1,11 +1,14 @@
-.body {
+ .body {
     height: 100vh;
-    background-image: url("../../src/assets/home-page.jpg");
-    background-position: center;
     background-size: cover;
-    display: flex;
-    flex-direction: column;
-}
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../src/assets/home-page.jpg");
+} 
 
 .intro {
     display: flex;
@@ -25,3 +28,23 @@
     display: flex;
     gap: 1rem;
 }
+
+@media (min-width: 375px) and (max-width: 640px) {
+    .body {
+        height: 100vh;
+        background-size: cover;
+        background-image: url("../../src/assets/home-page.jpg");
+    }
+    
+    .logo {
+        font-size: 2rem;
+        color: white;
+        background-color: #292b2c;
+        padding: 0 1rem 0 1rem;
+        min-width: max-content;
+        cursor:default;
+        display: flex;
+        gap: 1rem;
+    }
+}
+
