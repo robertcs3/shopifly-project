@@ -1,11 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Button, Card } from 'react-bootstrap'
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
+import { ItemContext } from '../../contexts/ItemContext';
 import { ItemInterface } from '../../interfaces/ItemInterface';
 import { formatCurrency } from '../../utility/formatCurrency';
+import EditItem from './EditItem';
 
 export default function AdminDisplay(item: ItemInterface) {
   const shoppingCartContext = useContext(ShoppingCartContext);
+  const itemContext = useContext(ItemContext);
+  const [modalShow, setModalShow] = useState<boolean>(false);
+  const [currentItem, setCurrentItem] = useState<ItemInterface>();
   return (
     <>
       <Card className="h-100 border border-light shadow-lg" style={{ width: "18rem" }}>
@@ -41,13 +46,13 @@ export default function AdminDisplay(item: ItemInterface) {
 
                 {item.stock === 0 ? (
                   <div className='d-flex align-items-baseline justify-content-center' >
-                    <Button disabled variant='primary' style={{width:"175px"}} onClick={() => shoppingCartContext.increaseCartQuantity(item._id)} >
+                    <Button disabled variant='primary' style={{ width: "11rem" }} onClick={() => shoppingCartContext.increaseCartQuantity(item._id)} >
                       + Add To Cart
                     </Button>
                   </div>
                 ) : (
-                  <div className='d-flex align-items-baseline justify-content-center' style={{width:"175px"}}>
-                    <Button variant='primary' style={{width:"175px"}} onClick={() => shoppingCartContext.increaseCartQuantity(item._id)} >
+                  <div className='d-flex align-items-baseline justify-content-center' style={{ width: "175px" }}>
+                    <Button variant='primary' style={{ width: "11rem" }} onClick={() => shoppingCartContext.increaseCartQuantity(item._id)} >
                       + Add To Cart
                     </Button>
                   </div>
@@ -57,12 +62,12 @@ export default function AdminDisplay(item: ItemInterface) {
               <>
                 <div
                   className="d-flex align-items-baseline justify-content-center"
-                  style={{ gap: ".5rem"}}
+                  style={{ gap: ".5rem" }}
                 >
                   <Button onClick={() => shoppingCartContext.decreaseCartQuantity(item._id)}>-</Button>
 
-                  <div className='d-flex justify-content-center' style={{width:"90px"}}>
-                    <span className="fs-5">{shoppingCartContext.getItemQuantity(item._id)} in cart</span> 
+                  <div className='d-flex justify-content-center' style={{ width: "90px" }}>
+                    <span className="fs-5">{shoppingCartContext.getItemQuantity(item._id)} in cart</span>
                   </div>
 
                   {/* disable add button if cart amount > stock number */}
@@ -77,31 +82,53 @@ export default function AdminDisplay(item: ItemInterface) {
               </>
             )}
 
-            {shoppingCartContext.getItemQuantity(item._id) === 0 || item.stock === 0 ? (
+            <div className="d-flex justify-content-between align-items-baseline mt-2 gap-3">
               <Button
-                disabled
-                onClick={() => shoppingCartContext.removeFromCart(item._id)}
-                variant="danger"
+                onClick={() => {
+                  setModalShow(true);
+                  setCurrentItem(item);
+                }}
+                variant="secondary"
                 size="sm"
               >
-                Remove
+                Edit
               </Button>
-            ) : (
+
+              {shoppingCartContext.getItemQuantity(item._id) === 0 || item.stock === 0 ? (
+                <Button
+                  disabled
+                  onClick={() => shoppingCartContext.removeFromCart(item._id)}
+                  variant="danger"
+                  size="sm"
+                >
+                  Remove
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => shoppingCartContext.removeFromCart(item._id)}
+                  variant="danger"
+                  size="sm"
+                >
+                  Remove
+                </Button>
+              )}
+
               <Button
-                onClick={() => shoppingCartContext.removeFromCart(item._id)}
-                variant="danger"
-                size="sm"
+                onClick={() => itemContext.deleteItem(item._id)}
+                variant='danger'
+                size='sm'
               >
-                Remove
+                Delete
               </Button>
-            )}
+            </div>
 
           </div>
-
-
-
         </Card.Body>
       </Card>
+
+      {currentItem !== undefined && (
+        <EditItem show={modalShow} onHide={() => setModalShow(false)} item={currentItem} />
+      )}
     </>
   )
 }

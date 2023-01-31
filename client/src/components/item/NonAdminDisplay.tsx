@@ -41,13 +41,13 @@ export default function NonAdminDisplay(item: ItemInterface) {
 
                 {item.stock === 0 ? (
                   <div className='d-flex align-items-baseline justify-content-center' >
-                    <Button disabled variant='primary' style={{width:"175px"}} onClick={() => shoppingCartContext.increaseCartQuantity(item._id)} >
+                    <Button disabled variant='primary' style={{ width: "11rem"}} onClick={() => shoppingCartContext.increaseCartQuantity(item._id)} >
                       + Add To Cart
                     </Button>
                   </div>
                 ) : (
                   <div className='d-flex align-items-baseline justify-content-center' style={{width:"175px"}}>
-                    <Button variant='primary' style={{width:"175px"}} onClick={() => shoppingCartContext.increaseCartQuantity(item._id)} >
+                    <Button variant='primary' style={{ width: "11rem" }} onClick={() => shoppingCartContext.increaseCartQuantity(item._id)} >
                       + Add To Cart
                     </Button>
                   </div>
@@ -77,24 +77,26 @@ export default function NonAdminDisplay(item: ItemInterface) {
               </>
             )}
 
-            {shoppingCartContext.getItemQuantity(item._id) === 0 || item.stock === 0 ? (
-              <Button
-                disabled
-                onClick={() => shoppingCartContext.removeFromCart(item._id)}
-                variant="danger"
-                size="sm"
-              >
-                Remove
-              </Button>
-            ) : (
-              <Button
-                onClick={() => shoppingCartContext.removeFromCart(item._id)}
-                variant="danger"
-                size="sm"
-              >
-                Remove
-              </Button>
-            )}
+            <div className='mt-2'>
+              {shoppingCartContext.getItemQuantity(item._id) === 0 || item.stock === 0 ? (
+                <Button
+                  disabled
+                  onClick={() => shoppingCartContext.removeFromCart(item._id)}
+                  variant="danger"
+                  size="sm"
+                >
+                  Remove
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => shoppingCartContext.removeFromCart(item._id)}
+                  variant="danger"
+                  size="sm"
+                >
+                  Remove
+                </Button>
+              )}
+            </div>
 
           </div>
 
