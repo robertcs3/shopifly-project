@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("../../src/assets/home-page.jpg");
+    background-image: url("../../src/assets/home-page.jpeg");
 } 
 
 .intro {
@@ -21,7 +21,7 @@
 .logo {
     font-size: 4rem;
     color: white;
-    background-color: black;
+    
     padding: 0 1rem 0 1rem;
     min-width: max-content;
     cursor:default;
@@ -33,13 +33,12 @@
     .body {
         height: 100vh;
         background-size: cover;
-        background-image: url("../../src/assets/home-page.jpg");
+        background-image: url("../../src/assets/home-page.jpeg");
     }
     
     .logo {
         font-size: 2rem;
         color: white;
-        background-color: #292b2c;
         padding: 0 1rem 0 1rem;
         min-width: max-content;
         cursor:default;

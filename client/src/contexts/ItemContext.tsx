@@ -1,7 +1,7 @@
-import { createContext, PropsWithChildren, useEffect, useState, useContext } from 'react'
+import { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import Axios, { AxiosResponse } from 'axios'
 import { ItemInterface } from '../interfaces/ItemInterface'
-import { ShoppingCartContext } from './ShoppingCartContext'
+
 
 type ItemContext = {
   createItem: (
