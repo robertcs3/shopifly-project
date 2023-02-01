@@ -21,7 +21,7 @@
 .logo {
     font-size: 4rem;
     color: white;
-    background-color: #292b2c;
+    background-color: black;
     padding: 0 1rem 0 1rem;
     min-width: max-content;
     cursor:default;
@@ -46,5 +46,11 @@
         display: flex;
         gap: 1rem;
     }
+
+    Button {
+        font-size: 0.5rem;
+    }
+
+
 }
 
