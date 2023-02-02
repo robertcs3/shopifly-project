@@ -12,9 +12,7 @@ export default function NavbarProvider(props: PropsWithChildren<any>) {
     const [location, setCurrentLocation] = useState('');
 
     const setLocation = (location: string) => {
-        console.log(location)
         setCurrentLocation(location);
-      
     }
 
     const variant = useMemo(() => location === '/' ? 'dark' : 'light', [location]);
