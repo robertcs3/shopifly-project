@@ -23,7 +23,6 @@ export default function Home() {
             <motion.div variants={fadeIn4} initial="hidden" animate="visible">
               <Button onClick={() => {
                 navigate('/shop')
-                navbarContext.handlePageChange('/shop')
                 }} variant='dark' className='rounded' size={isSmallScreen ? 'sm' : 'lg'}>Shop Now</Button>
               </motion.div>
           </div>
