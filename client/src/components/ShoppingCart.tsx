@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Button, Col, Offcanvas, Row, Stack } from 'react-bootstrap'
-import { ItemContext } from '../contexts/ItemContext';
+
 import { ShoppingCartContext } from '../contexts/ShoppingCartContext'
 import { formatCurrency } from '../utility/formatCurrency';
 

@@ -10,7 +10,7 @@ export default function NonUserDisplay(item: ItemInterface) {
         <Card.Img
           variant='top'
           src={item.imageUrl}
-          height="400px"
+          height="250px"
           style={{ objectFit: "cover" }}
         />
         <Card.Body>

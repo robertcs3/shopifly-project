@@ -2,27 +2,29 @@ import React, { createContext, PropsWithChildren, useMemo, useState } from 'reac
 
 
 type NavbarContext = {
-    handlePageChange : (page: string) => void
     variant: "dark" | "light";
     bg: "transparent" | "light";
+    setLocation: (location: string) => void
 }
 
 export const NavbarContext = createContext({} as NavbarContext)
 export default function NavbarProvider(props: PropsWithChildren<any>) {
-    const [activePage, setActivePage] = useState(localStorage.getItem('activePage' || '/'));
+    const [location, setCurrentLocation] = useState('');
 
-    const handlePageChange = (page: string) => {
-        setActivePage(page);
-        localStorage.setItem('activePage', page);
-      }
+    const setLocation = (location: string) => {
+        console.log(location)
+        setCurrentLocation(location);
+      
+    }
 
-    const variant = useMemo(() => activePage === '/' ? 'dark' : 'light', [activePage]);
-    const bg = useMemo(() => activePage === '/' ? 'transparent' : 'light', [activePage]);
+    const variant = useMemo(() => location === '/' ? 'dark' : 'light', [location]);
+    const bg = useMemo(() => location === '/' ? 'transparent' : 'light', [location]);
+    
     return (
         <NavbarContext.Provider value={{
-            handlePageChange,
             variant,
-            bg
+            bg,
+            setLocation,
         }}>
             {props.children}
         </NavbarContext.Provider>

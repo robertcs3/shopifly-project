@@ -5,7 +5,8 @@ import Form from 'react-bootstrap/esm/Form'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useContext } from 'react';
-import { UserContext } from '../contexts/UserContext';
+import { UserContext } from '../../contexts/UserContext';
+import { NavbarContext } from '../../contexts/NavbarContext';
 
 const schema = yup.object().shape({
     secret: yup.number().required(),
@@ -13,6 +14,7 @@ const schema = yup.object().shape({
 
 export default function MyVerticallyCenteredModal(props: any) {
     const userContext = useContext(UserContext);
+    const navbarContext = useContext(NavbarContext);
     return (
         <Modal
             {...props}

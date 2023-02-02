@@ -1,7 +1,7 @@
-import { useContext, useState, useMemo } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
-import { Button, Container, Nav, Navbar as NavbarBs, NavDropdown } from "react-bootstrap"
+import { Button, Container, Nav, Navbar as NavbarBs} from "react-bootstrap"
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
 import ShoppingCart from "./ShoppingCart";
 import { NavbarContext } from "../contexts/NavbarContext";
@@ -13,6 +13,11 @@ export default function Navbar() {
   const [show, setShow] = useState<boolean>(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  let location = useLocation();
+  
+  useEffect(() => {
+    navbarContext.setLocation(location.pathname);
+  }, [location.pathname])
 
 
   return (
@@ -20,16 +25,16 @@ export default function Navbar() {
       <NavbarBs collapseOnSelect expand='lg' sticky="top" bg={navbarContext.bg} variant={navbarContext.variant} className="shadow-sm">
 
         <Container>
-          <NavbarBs.Brand to="/" as={NavLink} className='fs-1' onClick={() => navbarContext.handlePageChange('/')} >Shopifly</NavbarBs.Brand>
+          <NavbarBs.Brand to="/" as={NavLink} className='fs-1'>Shopifly</NavbarBs.Brand>
           <NavbarBs.Toggle aria-controls="responsive-navbar-nav" />
           <NavbarBs.Collapse>
 
             <Nav className="me-auto fs-5">
-              <Nav.Link to="/shop" as={NavLink} onClick={() => navbarContext.handlePageChange('/shop')}>Shop</Nav.Link>
+              <Nav.Link to="/shop" as={NavLink}>Shop</Nav.Link>
               {userContext.user ? (
-                <Nav.Link to="/profile" as={NavLink} onClick={() => navbarContext.handlePageChange('/profile')}>{userContext.user.username}'s  profile</Nav.Link>
+                <Nav.Link to="/profile" as={NavLink}>{userContext.user.username}'s  profile</Nav.Link>
               ) : (
-                <Nav.Link to="/profile" as={NavLink} onClick={() => navbarContext.handlePageChange('/profile')}>Profile</Nav.Link>
+                <Nav.Link to="/profile" as={NavLink}>Profile</Nav.Link>
               )}
             </Nav>
             {userContext.user && (

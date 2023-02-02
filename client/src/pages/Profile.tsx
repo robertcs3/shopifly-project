@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Container } from 'react-bootstrap';
-import Entry from '../components/Entry';
-import User from '../components/User';
+import Entry from '../components/user/Entry';
+import User from '../components/user/User';
 import { UserContext } from '../contexts/UserContext';
 
 export default function Profile() {

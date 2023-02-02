@@ -1,23 +1,30 @@
 import { motion } from 'framer-motion';
-import { Button, Container } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import styles from '../styles/home.module.css';
-import {  fadeIn, fadeIn2, fadeIn3, fadeIn4, animationContainer } from '../animations/variants';
+import {  fadeInRight,  fadeIn4, animationContainer } from '../animations/variants';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive'
+import { NavbarContext } from '../contexts/NavbarContext';
+import { useContext } from 'react';
 export default function Home() {
-  const navigate = useNavigate(); 
- 
+  const navigate = useNavigate();
+  const isSmallScreen = useMediaQuery({maxWidth: 640})
+  const navbarContext = useContext(NavbarContext);
   return (
     <>
 
         <div className={styles['body']}>
           <div className={styles['intro']}>
-            <motion.div variants={animationContainer} className={styles['logo']}>
-              <motion.div variants={fadeIn} initial="hidden" animate="visible">Limitless</motion.div>
-              <motion.div variants={fadeIn2} initial="hidden" animate="visible">with </motion.div>
-              <motion.div variants={fadeIn3} initial="hidden" animate="visible">Wings</motion.div>
+            <motion.div variants={animationContainer} initial="hidden" animate="visible" className={styles['logo']}>
+              <motion.div variants={fadeInRight}>Limitless</motion.div>
+              <motion.div variants={fadeInRight}>with </motion.div>
+              <motion.div variants={fadeInRight}>Wings</motion.div>
             </motion.div>
             <motion.div variants={fadeIn4} initial="hidden" animate="visible">
-              <Button onClick={() => navigate('/shop')} variant='dark' className='mt-5 rounded-0' size="lg">Shop Now</Button>
+              <Button onClick={() => {
+                navigate('/shop')
+                navbarContext.handlePageChange('/shop')
+                }} variant='dark' className='rounded' size={isSmallScreen ? 'sm' : 'lg'}>Shop Now</Button>
               </motion.div>
           </div>
         </div>

@@ -1,10 +1,10 @@
-import React, { FormEvent, useContext, useState } from 'react'
+import {  useContext } from 'react'
 import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/esm/Form'
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { UserContext } from '../contexts/UserContext'
-import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext'
+import { NavbarContext } from '../../contexts/NavbarContext';
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 
 export default function Login() {
   const userContext = useContext(UserContext);
-  const navigate = useNavigate();
+  const navbarContext = useContext(NavbarContext);
   return (
     <>
       <Formik
