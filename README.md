@@ -1,7 +1,7 @@
 # shopifly-project
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dbwb3uyii/image/upload/v1675464290/portfolio/ezgif.com-gif-maker_pf0f2k.gif">
+  <img src="https://asset.cloudinary.com/dbwb3uyii/1e4b85810e0188d4769d36f7b173dc37">
 </p>
 
 # Project Overview
