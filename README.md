@@ -1,8 +1,6 @@
 # shopifly-project
 
-<p align="center">
-  <img src="https://asset.cloudinary.com/dbwb3uyii/1e4b85810e0188d4769d36f7b173dc37">
-</p>
+![ss](https://res.cloudinary.com/dbwb3uyii/image/upload/v1675464307/portfolio/shopifly-ss_sxym03.jpg)
 
 # Project Overview
 
