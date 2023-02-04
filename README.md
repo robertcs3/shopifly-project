@@ -1,6 +1,6 @@
 # shopifly-project
 
-![demo](https://res.cloudinary.com/dbwb3uyii/image/upload/v1675464290/portfolio/ezgif.com-gif-maker_pf0f2k.gif)
+![](https://res.cloudinary.com/dbwb3uyii/image/upload/v1675464290/portfolio/ezgif.com-gif-maker_pf0f2k.gif)
 
 # Project Overview
 
