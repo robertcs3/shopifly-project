@@ -53,7 +53,6 @@ export default function CreateItem(props: any) {
           handleChange,
           values,
           touched,
-          isValid,
           errors,
           setFieldValue
         }) => (

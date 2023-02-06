@@ -8,8 +8,6 @@ import CheckOutHistory from '../CheckOutHistory';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import { fadeInRight } from '../../animations/variants';
 import VerifyAdmin from './VerifyAdmin';
-import { useMediaQuery } from 'react-responsive'
-import { NavbarContext } from '../../contexts/NavbarContext';
 
 const schema = yup.object().shape({
   secret: yup.number().required(),
@@ -20,8 +18,7 @@ export default function User() {
   const shoppingCartContext = useContext(ShoppingCartContext);
   const [modalShow, setModalShow] = useState<boolean>(false);
   const [adminModalShow, setAdminModalShow] = useState<boolean>(false);
-  const navbarContext = useContext(NavbarContext);
-  const isSmallScreen = useMediaQuery({maxWidth: 640})
+ 
 
   const handleLogout = async () => {
     let response = await userContext.logout();

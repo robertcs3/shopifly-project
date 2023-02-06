@@ -1,12 +1,12 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Button, Col, Offcanvas, Row, Stack } from 'react-bootstrap'
-
 import { ShoppingCartContext } from '../contexts/ShoppingCartContext'
 import { formatCurrency } from '../utility/formatCurrency';
+import Payment from './payment/Payment';
 
 export default function ShoppingCart({ show, onHide }: any) {
     const shoppingCartContext = useContext(ShoppingCartContext);
-    
+    const [modalShow, setModalShow] = useState<boolean>(false);
     return (
         <>
             <Offcanvas show={show} onHide={onHide} scrolling="true" placement="end">
@@ -50,14 +50,14 @@ export default function ShoppingCart({ show, onHide }: any) {
                             <>
                                 <h5>Total: {formatCurrency(shoppingCartContext.getCheckOutTotal())}</h5>
                                 <Button variant='primary' onClick={() => {
-                                    shoppingCartContext.checkOut();
+                                    setModalShow(true);
                                 }}>Checkout</Button>
                             </>
                         )}
-
                     </Stack>
                 </Offcanvas.Body>
             </Offcanvas>
+            <Payment show={modalShow} onHide={() => setModalShow(false)} />
         </>
     )
 }

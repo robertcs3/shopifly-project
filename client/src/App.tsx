@@ -5,6 +5,8 @@ import Shop from './pages/Shop'
 import Profile from './pages/Profile';
 import { Container } from 'react-bootstrap';
 import NavbarProvider from './contexts/NavbarContext';
+import Payment from './components/payment/Payment';
+import Completion from './components/payment/Completion';
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/shop' element={<Shop />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/completion' element={<Completion />} />
             </Routes>
           </Container>
       </NavbarProvider>
