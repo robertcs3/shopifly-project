@@ -1,6 +1,6 @@
 # shopifly-project
 
-![ss](https://res.cloudinary.com/dbwb3uyii/image/upload/v1674555110/portfolio/shopifly-screenshot_ivzjbz.jpg)
+![ss](https://res.cloudinary.com/dbwb3uyii/image/upload/v1675750195/portfolio/shopifly-github-ss_q0hncc.jpg)
 
 # Project Overview
 
