@@ -51,7 +51,7 @@ export default function ShoppingCart({ show, onHide }: any) {
                                 <h5>Total: {formatCurrency(shoppingCartContext.getCheckOutTotal())}</h5>
                                 <Button variant='primary' onClick={() => {
                                     setModalShow(true);
-                                }}>Checkout</Button>
+                                }}>Check-out</Button>
                             </>
                         )}
                     </Stack>

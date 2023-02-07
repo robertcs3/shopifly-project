@@ -10,14 +10,14 @@ function Payment(props: any) {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/config").then(async (r) => {
+    fetch(`${import.meta.env.VITE_API_URL}/config`).then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(await loadStripe(publishableKey));
     });
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:4000/create-payment-intent", {
+    fetch(`${import.meta.env.VITE_API_URL}/create-payment-intent`, {
       method: "POST",
       body: JSON.stringify({}),
     }).then(async (result) => {
@@ -35,7 +35,7 @@ function Payment(props: any) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-        React Stripe and the Payment Element
+        Payment Information
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

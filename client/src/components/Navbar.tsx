@@ -36,7 +36,6 @@ export default function Navbar() {
               ) : (
                 <Nav.Link to="/profile" as={NavLink}>Profile</Nav.Link>
               )}
-              <Nav.Link to="/completion" as={NavLink}>Completion</Nav.Link>
             </Nav>
             {userContext.user && (
               <Button onClick={() => {

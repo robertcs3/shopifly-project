@@ -163,21 +163,23 @@ export default function ShoppingCartProvider(props: PropsWithChildren<any>) {
   }
 
   /* checkOut items */
-  const checkOut = () => {
+  const checkOut = async () => {
     try {
-      Axios.patch(`${import.meta.env.VITE_API_URL}/user/checkout/${userContext.user?.id}`, {
+      await Axios.patch(`${import.meta.env.VITE_API_URL}/user/checkout/${userContext.user?.id}`, {
         checkOutItems
       }, { withCredentials: true }).then((res: AxiosResponse) => {
-        console.log(res.data);
+        if (res.data === "success!") {
+          cartItems.forEach(item => {
+            itemContext.reduceStock(item.id, item.quantity);
+          })
+          clearCart();
+        }
       })
     } catch (err) {
       console.log(err);
     }
 
-    cartItems.forEach(item => {
-      itemContext.reduceStock(item.id, item.quantity);
-    })
-    clearCart();
+    
   }
 
   const clearCheckOutHistory = async () => {

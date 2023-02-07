@@ -1,8 +1,8 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
-import { useContext, useState } from "react";
+import {  useState, useContext } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
-import {ShoppingCartContext} from "../../contexts/ShoppingCartContext";
-import { Button } from "react-bootstrap";
+import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
+
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -10,7 +10,7 @@ export default function CheckoutForm() {
   const [message, setMessage] = useState<string | undefined>("");
   const [isProcessing, setIsProcessing] = useState(false);
   const shoppingCartContext = useContext(ShoppingCartContext);
-
+  
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
@@ -21,19 +21,24 @@ export default function CheckoutForm() {
     }
 
     setIsProcessing(true);
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `http://localhost:5173/completion`,
       },
-    });
+      redirect: "if_required"
+    })
 
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
+    if (error === undefined) {
+      await shoppingCartContext.checkOut();
+      window.location.replace('https://shopifly.onrender.com/completion');
+    } else if (error!.type === "card_error" || error!.type === "validation_error") {
+      setMessage(error!.message);
     } else {
       setMessage("An unexpected error occured.");
     }
 
+  
     setIsProcessing(false);
   };
 
@@ -41,7 +46,7 @@ export default function CheckoutForm() {
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
       <button className="my-3" disabled={isProcessing || !stripe || !elements} id="submit">
-        <span id="button-text" /* onClick={() => shoppingCartContext.checkOut()} */>
+        <span id="button-text">
           {isProcessing ? "Processing ... " : "Pay now"}
         </span>
       </button>

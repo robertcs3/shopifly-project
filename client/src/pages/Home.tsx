@@ -4,12 +4,9 @@ import styles from '../styles/home.module.css';
 import {  fadeInRight,  fadeIn4, animationContainer } from '../animations/variants';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive'
-import { NavbarContext } from '../contexts/NavbarContext';
-import { useContext } from 'react';
 export default function Home() {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery({maxWidth: 640})
-  const navbarContext = useContext(NavbarContext);
   return (
     <>
 

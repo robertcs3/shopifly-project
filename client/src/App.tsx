@@ -5,7 +5,6 @@ import Shop from './pages/Shop'
 import Profile from './pages/Profile';
 import { Container } from 'react-bootstrap';
 import NavbarProvider from './contexts/NavbarContext';
-import Payment from './components/payment/Payment';
 import Completion from './components/payment/Completion';
 
 function App() {
