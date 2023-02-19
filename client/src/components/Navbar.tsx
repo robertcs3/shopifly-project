@@ -10,15 +10,11 @@ export default function Navbar() {
   const userContext = useContext(UserContext);
   const shoppingCartContext = useContext(ShoppingCartContext);
   const navbarContext = useContext(NavbarContext);
-  const [show, setShow] = useState<boolean>(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   let location = useLocation();
   
   useEffect(() => {
     navbarContext.setLocation(location.pathname);
   }, [location.pathname])
-
 
   return (
     <>
@@ -39,7 +35,7 @@ export default function Navbar() {
             </Nav>
             {userContext.user && (
               <Button onClick={() => {
-                handleShow();
+                shoppingCartContext.handleShow();
               }} style={{ width: "3rem", height: "3rem", position: "relative" }} className="rounded-circle border-dark" variant="light"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 239.988 239.988" xmlSpace="preserve"> <path d="M26.674,45.892L0,38.843L7.664,9.839l49.01,12.951v20.906h183.314l-31.314,101.955h-152v23.022h145.648l-8.158,29h-19.926
                                  c2.393,3.362,3.814,7.464,3.814,11.904c0,11.361-9.209,20.571-20.57,20.571c-11.361,0-20.572-9.21-20.572-20.571
@@ -57,7 +53,7 @@ export default function Navbar() {
                   }}>{shoppingCartContext.getCartQuantity()}</div>
               </Button>
             )}
-            <ShoppingCart show={show} onHide={() => handleClose()} />
+  
           </NavbarBs.Collapse>
         </Container>
 

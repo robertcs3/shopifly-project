@@ -1,10 +1,10 @@
 import Axios, { AxiosResponse } from 'axios'
-import React, { createContext, PropsWithChildren, ReactNode, useContext, useEffect, useState } from 'react'
+import { createContext, PropsWithChildren, ReactNode, useContext, useEffect, useState } from 'react'
 import { UserContext } from './UserContext'
 import { CartItem, CheckOutItems } from '../interfaces/UserInterface'
 import {ItemContext} from './ItemContext'
-import { Row, Col, Button } from 'react-bootstrap'
-import { formatCurrency } from '../utility/formatCurrency'
+import ShoppingCart from '../components/ShoppingCart'
+
 
 
 type ShoppingCartContext = {
@@ -19,6 +19,8 @@ type ShoppingCartContext = {
   checkOut: () => void
   checkOutHistory: Array<CheckOutItems>
   clearCheckOutHistory: () => void
+  handleClose: () => void
+  handleShow: () => void
 }
 
 
@@ -29,6 +31,11 @@ export default function ShoppingCartProvider(props: PropsWithChildren<any>) {
   const [cartItems, setCartItems] = useState<Array<CartItem>>([]);
   const [checkOutItems, setCheckOutItems] = useState<Array<CheckOutItems>>([]);
   const [checkOutHistory, setCheckOutHistory] = useState<Array<CheckOutItems>>([]);
+  const [show, setShow] = useState<boolean>(false);
+  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     if (userContext.user) {
       setCartItems(userContext.user.items);
@@ -47,6 +54,8 @@ export default function ShoppingCartProvider(props: PropsWithChildren<any>) {
       getCheckOutHistory();
     }
   }, [cartItems, checkOutHistory])
+
+
 
 
   /* update cart */
@@ -211,8 +220,11 @@ export default function ShoppingCartProvider(props: PropsWithChildren<any>) {
       checkOut,
       checkOutHistory,
       clearCheckOutHistory,
+      handleClose,
+      handleShow,
     }}>
       {props.children}
+    <ShoppingCart show={show} onHide={() => handleClose()} />
     </ShoppingCartContext.Provider>
   )
 }

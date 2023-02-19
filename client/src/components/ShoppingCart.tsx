@@ -7,9 +7,14 @@ import Payment from './payment/Payment';
 export default function ShoppingCart({ show, onHide }: any) {
     const shoppingCartContext = useContext(ShoppingCartContext);
     const [modalShow, setModalShow] = useState<boolean>(false);
+
+    const option = {
+        scroll: true,
+        backdrop: true,
+    }
     return (
         <>
-            <Offcanvas show={show} onHide={onHide} scrolling="true" placement="end">
+            <Offcanvas show={show} onHide={onHide} {...option} placement="end">
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title><h4>My Shopping Cart</h4></Offcanvas.Title>
                 </Offcanvas.Header>
