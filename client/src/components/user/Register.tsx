@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react'
-import { Alert, Button } from 'react-bootstrap'
+import { Alert, Button, Spinner } from 'react-bootstrap'
 import Form from 'react-bootstrap/esm/Form'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { UserContext } from '../../contexts/UserContext'
+import { ButtonContext } from '../../contexts/ButtonContext';
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -12,13 +13,14 @@ const schema = yup.object().shape({
 
 export default function Register() {
   const userContext = useContext(UserContext);
+  const buttonContext = useContext(ButtonContext);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   return (
     <>
       <Formik
         validationSchema={schema}
         onSubmit={async (values, actions) => {
-
+          buttonContext.setIsLoading(true);
           let response = await userContext.register(values.username, values.password)
 
           if (response === "User Already Exists") {
@@ -28,6 +30,7 @@ export default function Register() {
             actions.resetForm();
             setShowSuccessMessage(true);
           }
+          buttonContext.setIsLoading(false);
         }}
         initialValues={{
           username: '',
@@ -58,11 +61,24 @@ export default function Register() {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type='password' name='password' onChange={handleChange} value={values.password} onBlur={handleBlur} isValid={touched.password && !errors.password}
                   isInvalid={!!errors.password} placeholder="Password" required />
+                <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
               </Form.Group>
-              <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
+
+              {buttonContext.isLoading ? (
+               <Button variant='primary'  disabled>
+                 <Spinner
+                 as="span"
+                 animation="border"
+                 role="status"
+                 aria-hidden="true"
+                              />
+               </Button>
+            ) : (
               <Button variant='primary' type="submit">
-                Register
-              </Button>
+              Register
+            </Button>
+            )}
+            
             </Form>
           </>
 

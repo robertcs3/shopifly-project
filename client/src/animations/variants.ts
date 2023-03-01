@@ -8,6 +8,7 @@ export const animationContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
+      delayChildren: 0.5,
       staggerChildren: 0.75,
     }
   }

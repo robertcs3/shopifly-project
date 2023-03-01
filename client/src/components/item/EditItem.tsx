@@ -5,7 +5,8 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { cloudinary } from '../../utility/cloudinary'
 import { ItemContext } from '../../contexts/ItemContext';
-
+import { ButtonContext } from '../../contexts/ButtonContext';
+import Spinner from 'react-bootstrap/Spinner';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -16,6 +17,7 @@ const schema = yup.object().shape({
 
 export default function CreateItem(props: any) {
   const itemContext = useContext(ItemContext);
+  const buttonContext = useContext(ButtonContext);
 
   return (
     <Modal
@@ -33,6 +35,7 @@ export default function CreateItem(props: any) {
         <Formik
       validationSchema={schema}
       onSubmit={async (values, actions) => {
+        buttonContext.setIsLoading(true);
         let imageUrl = await cloudinary(values.imageFile);
         let response = await itemContext.editItem(props.item._id, values.name, values.price, values.stock, imageUrl)
         if (response === 'duplicate') {
@@ -40,6 +43,7 @@ export default function CreateItem(props: any) {
         } else {
           props.onHide();
         }
+        buttonContext.setIsLoading(false);
       }}
       initialValues={{
         name: props.item.name,
@@ -89,9 +93,20 @@ export default function CreateItem(props: any) {
             <Form.Control.Feedback type='invalid'>{errors.imageFile}</Form.Control.Feedback>
           </Form.Group>
               <Modal.Footer>
-                <Button variant='primary' type="submit">
-                  Submit
-                </Button>
+              {buttonContext.isLoading ? (
+               <Button variant='primary'  disabled>
+                 <Spinner
+                 as="span"
+                 animation="border"
+                 role="status"
+                 aria-hidden="true"
+                              />
+               </Button>
+            ) : (
+              <Button variant='primary' type="submit">
+              Submit
+            </Button>
+            )}
               </Modal.Footer>
         </Form>
         )}

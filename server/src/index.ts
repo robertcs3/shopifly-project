@@ -18,6 +18,7 @@ const itemRouter = require('./routes/item')
 
 const LocalStrategy = passportLocal.Strategy;
 const PORT = 4000;
+
 /* connect to database */
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URL!).then(() => {
@@ -29,7 +30,7 @@ const app = express();
 const { resolve } = require("path");
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-app.set('trust proxy', 1);  
+app.set('trust proxy', 1);   
 app.use(cookieParser());
 app.use(cors({ origin: process.env.CORS, credentials: true }))
 app.use(
@@ -40,13 +41,13 @@ app.use(
       sameSite: "none",
       secure: true,
       maxAge: 86400000,
-    },  
+    },   
     saveUninitialized: false,
-     store: new MongoStore({
+      store: new MongoStore({
       mongoUrl: process.env.MONGO_URL,
       ttl: 14 * 24 * 60 * 60,
       autoRemove: 'native'
-    })  
+    })   
 })
 );
 
