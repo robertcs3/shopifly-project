@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/esm/Form'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { UserContext } from '../../contexts/UserContext'
 import { ButtonContext } from '../../contexts/ButtonContext';
-import Spinner from 'react-bootstrap/Spinner';
+
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -64,14 +64,7 @@ export default function Login() {
             </Form.Group>
 
             {buttonContext.isLoading ? (
-               <Button variant='primary'  disabled>
-                 <Spinner
-                 as="span"
-                 animation="border"
-                 role="status"
-                 aria-hidden="true"
-                              />
-               </Button>
+               buttonContext.displaySpinner()
             ) : (
               <Button variant='primary' type="submit">
               Login

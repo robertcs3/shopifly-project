@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { useContext } from 'react'
+import { Card, Col, Row } from 'react-bootstrap';
 import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
 import { formatCurrency } from '../utility/formatCurrency';
 

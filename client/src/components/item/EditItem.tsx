@@ -93,15 +93,9 @@ export default function CreateItem(props: any) {
             <Form.Control.Feedback type='invalid'>{errors.imageFile}</Form.Control.Feedback>
           </Form.Group>
               <Modal.Footer>
+                
               {buttonContext.isLoading ? (
-               <Button variant='primary'  disabled>
-                 <Spinner
-                 as="span"
-                 animation="border"
-                 role="status"
-                 aria-hidden="true"
-                              />
-               </Button>
+               buttonContext.displaySpinner()
             ) : (
               <Button variant='primary' type="submit">
               Submit

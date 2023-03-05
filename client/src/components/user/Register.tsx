@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { Alert, Button, Spinner } from 'react-bootstrap'
+import { Alert, Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/esm/Form'
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -65,14 +65,7 @@ export default function Register() {
               </Form.Group>
 
               {buttonContext.isLoading ? (
-               <Button variant='primary'  disabled>
-                 <Spinner
-                 as="span"
-                 animation="border"
-                 role="status"
-                 aria-hidden="true"
-                              />
-               </Button>
+               buttonContext.displaySpinner()
             ) : (
               <Button variant='primary' type="submit">
               Register

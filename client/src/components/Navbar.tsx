@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
 import { Button, Container, Nav, Navbar as NavbarBs} from "react-bootstrap"
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
-import ShoppingCart from "./ShoppingCart";
+
 import { NavbarContext } from "../contexts/NavbarContext";
 
 export default function Navbar() {

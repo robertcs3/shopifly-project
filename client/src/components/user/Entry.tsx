@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Tabs, Tab, Row, Container, Col } from 'react-bootstrap'
+import { useState } from 'react'
+import { Tabs, Tab, Row, Col } from 'react-bootstrap'
 import Login from './Login'
 import Register from './Register'
 
